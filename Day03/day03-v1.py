@@ -82,9 +82,8 @@ def get_points(directions):
 wire_one_points = get_points(wire_one)
 wire_two_points = get_points(wire_two)
 
-
-# print(f'wire one pts: {wire_one_points}')
-# print(f'wire two pts: {wire_two_points}')
+print(f'wire one points count: {len(wire_one_points)}')
+print(f'wire two points count: {len(wire_two_points)}')
 
 
 def plot_increasing_x_points(current_pt, next_pt):
@@ -194,9 +193,8 @@ def plot_middle_points(points):
 all_pt_w_one = plot_middle_points(wire_one_points)
 all_pt_w_two = plot_middle_points(wire_two_points)
 
-
-# print(f'all points for one: {all_pt_w_one}')
-# print(f'all points for one: {all_pt_w_two}')
+print(f'count with middle points | wire one : {len(all_pt_w_one)}')
+print(f'count with middle points | wire two : {len(all_pt_w_two)}')
 
 
 def intersection(points_one, points_two):
@@ -213,8 +211,7 @@ def intersection(points_one, points_two):
 
 intersection_pts = [x for x in all_pt_w_one if x in all_pt_w_two]
 
-
-# print(f'intersection: {intersection_pts}')
+print(f'intersection points count: {len(intersection_pts)}')
 
 
 def distance_from_origin(point):
