@@ -53,8 +53,8 @@ wire_two = ['L993', 'D508', 'R356', 'U210', 'R42', 'D68', 'R827', 'D513', 'L564'
 # wire_one = ['R98','U47','R26','D63','R33','U87','L62','D20','R33','U53','R51']
 # wire_two = ['U98','R91','D20','R16','D67','R40','U7','R15','U6','R7']
 
-# wire_one = ['R8', 'U5', 'L5', 'D3']
-# wire_two = ['U7', 'R6', 'D4', 'L4']
+wire_one = ['R8', 'U5', 'L5', 'D3']
+wire_two = ['U7', 'R6', 'D4', 'L4']
 
 def get_points(directions):
     points = [[0, 0]]
@@ -211,6 +211,7 @@ def intersection(points_one, points_two):
 
 intersection_pts = [x for x in all_pt_w_one if x in all_pt_w_two]
 
+print(f'intersection points: {intersection_pts}')
 print(f'intersection points count: {len(intersection_pts)}')
 
 
