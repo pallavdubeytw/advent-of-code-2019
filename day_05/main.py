@@ -90,6 +90,8 @@ def get_next_instruction_position_offset(mode):
         return 4
     elif mode is Mode.INPUT or mode is Mode.OUTPUT:
         return 2
+    elif mode is Mode.JUMP_IF_TRUE or mode is Mode.JUMP_IF_FALSE:
+        return 3
 
 
 def add(ip, first, second, third, first_mode, second_mode):
@@ -179,17 +181,13 @@ def main_prog():
             index = get_jump_if_true_index(prog, first, mode_first, second, mode_second)
             if index is not None:
                 i = index
-            else:
-                i += 3
-            continue
+                continue
 
         elif mode is Mode.JUMP_IF_FALSE:
             index = get_jump_if_false_index(prog, first, mode_first, second, mode_second)
             if index is not None:
                 i = index
-            else:
-                i += 3
-            continue
+                continue
 
         elif mode is Mode.LESS_THAN:
             less_than(prog, first, second, third, mode_first, mode_second)
