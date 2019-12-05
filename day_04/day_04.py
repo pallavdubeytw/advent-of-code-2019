@@ -1,3 +1,6 @@
+import timeit
+
+
 def has_adj_numbers(number):
     string = str(number)
 
@@ -47,6 +50,12 @@ def second_filter(number):
 def main():
     given_range = range(382345, 843167)
 
+    start = "1" + ("0" * 9)
+    end = "9" * 10
+    given_range = range(int(start), int(end))
+    print(f'start: {start}')
+    print(f'start: {end}')
+
     first_filtered_values = []
     for i in given_range:
         if has_adj_numbers(i) and not is_decreasing(i):
@@ -62,4 +71,10 @@ def main():
     print(f'count of filter two values: {len(second_filtered_values)}')
 
 
+start = timeit.default_timer()
+
 main()
+
+stop = timeit.default_timer()
+
+print('Time: ', stop - start)

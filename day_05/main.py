@@ -29,38 +29,8 @@ prog = [3, 225, 1, 225, 6, 6, 1100, 1, 238, 225, 104, 0, 1101, 65, 39, 225, 2, 1
         224, 659, 101, 1, 223, 223, 1008, 226, 226, 224, 1002, 223, 2, 223, 1006, 224, 674, 1001, 223, 1, 223, 4, 223,
         99, 226]
 
-# prog = [1002, 4, 3, 4, 33]
 
-prog = [3, 225, 1, 225, 6, 6, 1100, 1, 238, 225, 104, 0, 1102, 45, 16, 225, 2, 65, 191, 224, 1001, 224, -3172, 224, 4,
-        224, 102, 8, 223, 223, 1001, 224, 5, 224, 1, 223, 224, 223, 1102, 90, 55, 225, 101, 77, 143, 224, 101, -127,
-        224, 224, 4, 224, 102, 8, 223, 223, 1001, 224, 7, 224, 1, 223, 224, 223, 1102, 52, 6, 225, 1101, 65, 90, 225,
-        1102, 75, 58, 225, 1102, 53, 17, 224, 1001, 224, -901, 224, 4, 224, 1002, 223, 8, 223, 1001, 224, 3, 224, 1,
-        224, 223, 223, 1002, 69, 79, 224, 1001, 224, -5135, 224, 4, 224, 1002, 223, 8, 223, 1001, 224, 5, 224, 1, 224,
-        223, 223, 102, 48, 40, 224, 1001, 224, -2640, 224, 4, 224, 102, 8, 223, 223, 1001, 224, 1, 224, 1, 224, 223,
-        223, 1101, 50, 22, 225, 1001, 218, 29, 224, 101, -119, 224, 224, 4, 224, 102, 8, 223, 223, 1001, 224, 2, 224, 1,
-        223, 224, 223, 1101, 48, 19, 224, 1001, 224, -67, 224, 4, 224, 102, 8, 223, 223, 1001, 224, 6, 224, 1, 223, 224,
-        223, 1101, 61, 77, 225, 1, 13, 74, 224, 1001, 224, -103, 224, 4, 224, 1002, 223, 8, 223, 101, 3, 224, 224, 1,
-        224, 223, 223, 1102, 28, 90, 225, 4, 223, 99, 0, 0, 0, 677, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1105, 0, 99999,
-        1105, 227, 247, 1105, 1, 99999, 1005, 227, 99999, 1005, 0, 256, 1105, 1, 99999, 1106, 227, 99999, 1106, 0, 265,
-        1105, 1, 99999, 1006, 0, 99999, 1006, 227, 274, 1105, 1, 99999, 1105, 1, 280, 1105, 1, 99999, 1, 225, 225, 225,
-        1101, 294, 0, 0, 105, 1, 0, 1105, 1, 99999, 1106, 0, 300, 1105, 1, 99999, 1, 225, 225, 225, 1101, 314, 0, 0,
-        106, 0, 0, 1105, 1, 99999, 7, 226, 677, 224, 102, 2, 223, 223, 1005, 224, 329, 1001, 223, 1, 223, 8, 226, 677,
-        224, 1002, 223, 2, 223, 1005, 224, 344, 101, 1, 223, 223, 8, 226, 226, 224, 1002, 223, 2, 223, 1006, 224, 359,
-        101, 1, 223, 223, 1008, 677, 226, 224, 1002, 223, 2, 223, 1005, 224, 374, 1001, 223, 1, 223, 108, 677, 677, 224,
-        1002, 223, 2, 223, 1005, 224, 389, 1001, 223, 1, 223, 1107, 226, 677, 224, 1002, 223, 2, 223, 1006, 224, 404,
-        101, 1, 223, 223, 1008, 226, 226, 224, 102, 2, 223, 223, 1006, 224, 419, 1001, 223, 1, 223, 7, 677, 226, 224,
-        1002, 223, 2, 223, 1005, 224, 434, 101, 1, 223, 223, 1108, 226, 226, 224, 1002, 223, 2, 223, 1005, 224, 449,
-        101, 1, 223, 223, 7, 226, 226, 224, 102, 2, 223, 223, 1005, 224, 464, 101, 1, 223, 223, 108, 677, 226, 224, 102,
-        2, 223, 223, 1005, 224, 479, 1001, 223, 1, 223, 1007, 677, 226, 224, 1002, 223, 2, 223, 1006, 224, 494, 1001,
-        223, 1, 223, 1007, 677, 677, 224, 1002, 223, 2, 223, 1006, 224, 509, 1001, 223, 1, 223, 107, 677, 677, 224,
-        1002, 223, 2, 223, 1005, 224, 524, 101, 1, 223, 223, 1108, 226, 677, 224, 102, 2, 223, 223, 1006, 224, 539,
-        1001, 223, 1, 223, 8, 677, 226, 224, 102, 2, 223, 223, 1005, 224, 554, 101, 1, 223, 223, 1007, 226, 226, 224,
-        102, 2, 223, 223, 1006, 224, 569, 1001, 223, 1, 223, 107, 677, 226, 224, 102, 2, 223, 223, 1005, 224, 584, 1001,
-        223, 1, 223, 108, 226, 226, 224, 102, 2, 223, 223, 1006, 224, 599, 1001, 223, 1, 223, 107, 226, 226, 224, 1002,
-        223, 2, 223, 1006, 224, 614, 1001, 223, 1, 223, 1108, 677, 226, 224, 1002, 223, 2, 223, 1005, 224, 629, 1001,
-        223, 1, 223, 1107, 677, 677, 224, 102, 2, 223, 223, 1005, 224, 644, 1001, 223, 1, 223, 1008, 677, 677, 224, 102,
-        2, 223, 223, 1005, 224, 659, 101, 1, 223, 223, 1107, 677, 226, 224, 1002, 223, 2, 223, 1006, 224, 674, 101, 1,
-        223, 223, 4, 223, 99, 226]
+# prog = [1002, 4, 3, 4, 33]
 
 
 class Mode:
@@ -68,6 +38,10 @@ class Mode:
     MULTIPLY = 2
     INPUT = 3
     OUTPUT = 4
+    JUMP_IF_TRUE = 5
+    JUMP_IF_FALSE = 6
+    LESS_THAN = 7
+    EQUALS = 8
     STOP = 99
 
 
@@ -112,26 +86,24 @@ def get_mode_third(number):
 
 
 def get_next_instruction_position_offset(mode):
-    if mode is Mode.ADD or mode is Mode.MULTIPLY:
+    if mode is Mode.ADD or mode is Mode.MULTIPLY or mode is Mode.LESS_THAN or mode is Mode.EQUALS:
         return 4
     elif mode is Mode.INPUT or mode is Mode.OUTPUT:
         return 2
 
 
-def add(ip, first, second, third, first_mode, second_mode, third_mode):
+def add(ip, first, second, third, first_mode, second_mode):
     op_1 = first if first_mode == ParameterMode.IMMEDIATE else ip[first]
     op_2 = second if second_mode == ParameterMode.IMMEDIATE else ip[second]
 
-    if third_mode is ParameterMode.POSITION:
-        ip[third] = op_1 + op_2
+    ip[third] = op_1 + op_2
 
 
-def multiply(ip, first, second, third, first_mode, second_mode, third_mode):
+def multiply(ip, first, second, third, first_mode, second_mode):
     op_1 = first if first_mode == ParameterMode.IMMEDIATE else ip[first]
     op_2 = second if second_mode == ParameterMode.IMMEDIATE else ip[second]
 
-    if third_mode is ParameterMode.POSITION:
-        ip[third] = op_1 * op_2
+    ip[third] = op_1 * op_2
 
 
 def ip_mode(ip, first):
@@ -142,6 +114,42 @@ def op_mode(ip, first):
     print(ip[first])
 
 
+def get_jump_if_true_index(ip, first, first_mode, second, second_mode):
+    op_1 = first if first_mode == ParameterMode.IMMEDIATE else ip[first]
+    op_2 = second if second_mode == ParameterMode.IMMEDIATE else ip[second]
+
+    if op_1 != 0:
+        return op_2
+
+
+def get_jump_if_false_index(ip, first, first_mode, second, second_mode):
+    op_1 = first if first_mode == ParameterMode.IMMEDIATE else ip[first]
+    op_2 = second if second_mode == ParameterMode.IMMEDIATE else ip[second]
+
+    if op_1 == 0:
+        return op_2
+
+
+def less_than(ip, first, second, third, first_mode, second_mode):
+    op_1 = first if first_mode == ParameterMode.IMMEDIATE else ip[first]
+    op_2 = second if second_mode == ParameterMode.IMMEDIATE else ip[second]
+
+    if op_1 < op_2:
+        ip[third] = 1
+    else:
+        ip[third] = 0
+
+
+def equals(ip, first, second, third, first_mode, second_mode):
+    op_1 = first if first_mode == ParameterMode.IMMEDIATE else ip[first]
+    op_2 = second if second_mode == ParameterMode.IMMEDIATE else ip[second]
+
+    if op_1 == op_2:
+        ip[third] = 1
+    else:
+        ip[third] = 0
+
+
 def main_prog():
     i = 0
     while i < len(prog) - 1:
@@ -149,16 +157,46 @@ def main_prog():
 
         mode = get_op_code(inst)
 
+        first = prog[i + 1]
+        second = prog[i + 2]
+        third = prog[i + 3]
+        mode_first = get_mode_first(inst)
+        mode_second = get_mode_second(inst)
+
         if mode is Mode.ADD:
-            add(prog, prog[i + 1], prog[i + 2], prog[i + 3], get_mode_first(inst), get_mode_second(inst),
-                get_mode_third(inst))
+            add(prog, first, second, third, mode_first, mode_second)
+
         elif mode is Mode.MULTIPLY:
-            multiply(prog, prog[i + 1], prog[i + 2], prog[i + 3], get_mode_first(inst), get_mode_second(inst),
-                     get_mode_third(inst))
+            multiply(prog, first, second, third, mode_first, mode_second)
+
         elif mode is Mode.INPUT:
-            ip_mode(prog, prog[i + 1])
+            ip_mode(prog, first)
+
         elif mode is Mode.OUTPUT:
-            op_mode(prog, prog[i + 1])
+            op_mode(prog, first)
+
+        elif mode is Mode.JUMP_IF_TRUE:
+            index = get_jump_if_true_index(prog, first, mode_first, second, mode_second)
+            if index is not None:
+                i = index
+            else:
+                i += 3
+            continue
+
+        elif mode is Mode.JUMP_IF_FALSE:
+            index = get_jump_if_false_index(prog, first, mode_first, second, mode_second)
+            if index is not None:
+                i = index
+            else:
+                i += 3
+            continue
+
+        elif mode is Mode.LESS_THAN:
+            less_than(prog, first, second, third, mode_first, mode_second)
+
+        elif mode is Mode.EQUALS:
+            equals(prog, first, second, third, mode_first, mode_second)
+
         else:
             break
 

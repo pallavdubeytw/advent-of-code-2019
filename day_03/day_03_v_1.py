@@ -1,3 +1,7 @@
+import timeit
+
+start = timeit.default_timer()
+
 wire_one = ['R991', 'U557', 'R554', 'U998', 'L861', 'D301', 'L891', 'U180', 'L280', 'D103', 'R828', 'D58', 'R373',
             'D278', 'L352', 'D583', 'L465', 'D301', 'R384', 'D638', 'L648', 'D413', 'L511', 'U596', 'L701', 'U463',
             'L664', 'U905', 'L374', 'D372', 'L269', 'U868', 'R494', 'U294', 'R661', 'U604', 'L629', 'U763', 'R771',
@@ -46,15 +50,15 @@ wire_two = ['L993', 'D508', 'R356', 'U210', 'R42', 'D68', 'R827', 'D513', 'L564'
             'D10', 'R104', 'U654', 'R346', 'D458', 'R219', 'U247', 'L841', 'D731', 'R115', 'U400', 'L731', 'D904',
             'L487', 'U430', 'R612', 'U437', 'L865', 'D618', 'R747', 'U522', 'R309', 'U302', 'R9', 'U609', 'L201']
 
-
 # wire_one = ['R75', 'D30', 'R83', 'U83', 'L12', 'D49', 'R71', 'U7', 'L72']
 # wire_two = ['U62', 'R66', 'U55', 'R34', 'D71', 'R55', 'D58', 'R83']
 
 # wire_one = ['R98','U47','R26','D63','R33','U87','L62','D20','R33','U53','R51']
 # wire_two = ['U98','R91','D20','R16','D67','R40','U7','R15','U6','R7']
 
-wire_one = ['R8', 'U5', 'L5', 'D3']
-wire_two = ['U7', 'R6', 'D4', 'L4']
+# wire_one = ['R8', 'U5', 'L5', 'D3']
+# wire_two = ['U7', 'R6', 'D4', 'L4']
+
 
 def get_points(directions):
     points = [[0, 0]]
@@ -252,3 +256,7 @@ while index < len(steps_to_each_intersection_w_one):
     index += 1
 
 print(f'min steps: {min(steps_sum_list[1:])}')
+
+stop = timeit.default_timer()
+
+print('Time: ', stop - start)
