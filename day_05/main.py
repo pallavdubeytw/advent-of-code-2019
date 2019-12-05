@@ -152,7 +152,7 @@ def equals(ip, first, second, third, first_mode, second_mode):
 
 def main_prog():
     i = 0
-    while i < len(prog) - 1:
+    while i < len(prog) - 3:
         inst = prog[i]
 
         mode = get_op_code(inst)
