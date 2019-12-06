@@ -2,6 +2,7 @@ planet_str = 'COM)V9S,XNR)9W1,VGS)XCW,WS5)5XM,T9F)RTN,RQ8)67Q,1WV)YS3,V69)VCK,65
 
 
 # planet_str = 'COM)B,B)C,C)D,D)E,E)F,B)G,G)H,D)I,E)J,J)K,K)L'
+# planet_str = 'COM)B,B)C,C)D,D)E,E)F,B)G,G)H,D)I,E)J,J)K,K)L,K)YOU,I)SAN'
 #
 # planet_str = 'C)O,COM)B,B)C,C)D,D)E,E)F,M)N,B)G,O)P,G)H,D)I,E)J,J)K,K)L,L)M'
 
@@ -57,7 +58,7 @@ tree = None
 
 loop_counter = 1
 while len(plotted) < len(distinct_planets):
-    print(f'progress {str(int(len(plotted)/len(distinct_planets)*100))}%')
+    print(f'progress {str(int(len(plotted) / len(distinct_planets) * 100))}%')
     loop_counter += 1
     for line in planet_str.split(','):
         p = line.split(')')
@@ -97,3 +98,39 @@ for p in distinct_planets:
     total += p_count
 
 print(f'total orbit: {total}')
+
+
+def get_dist(node_value):
+    node = find_in_tree(tree, node_value)
+    node_dist = 0
+    node_path = []
+    while node is not None and node.parent is not None:
+        node = node.parent
+        node_path.append(node.value)
+        node_dist += 1
+    return [node_dist, node_path]
+
+
+you_node_attr = get_dist('YOU')
+san_node_attr = get_dist('SAN')
+
+you_dist = you_node_attr[0]
+you_path = you_node_attr[1]
+san_dist = san_node_attr[0]
+san_path = san_node_attr[1]
+
+print(f'you dist: {you_dist}')
+print(f'san dist: {san_dist}')
+
+intersection = [x for x in san_path if x in you_path]
+
+lca_value = intersection[0]
+
+print(f'lca value {lca_value}')
+# print(f'intersection: {intersection}')
+
+lca_node_attr = get_dist(lca_value)
+lca_dist = lca_node_attr[0]
+lca_path = lca_node_attr[1]
+
+print('transfers: ' + str((you_node_attr[0] + san_node_attr[0] - 2 * lca_dist)-2))
