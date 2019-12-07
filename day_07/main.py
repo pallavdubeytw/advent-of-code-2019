@@ -136,7 +136,7 @@ def op_equals(program, param_1, first_param_mode, param_2, second_param_mode, pa
 def process(program, phase_setting, amp_signal):
     i = 0
     input_no = 1
-    amp_output = -0.1
+    amp_output = None
     while i < len(program) - 3:
         instruction = program[i]
 
@@ -190,8 +190,26 @@ def process(program, phase_setting, amp_signal):
     return amp_output
 
 
+def amp_controller(int_code, phase_inputs):
+    amp_output = 0
+    for pi in phase_inputs:
+        amp_output = process(int_code, pi, amp_output)
+
+    return amp_output
+
+
+def main():
+    permutations = [[4, 3, 2, 1, 0], [0, 1, 2, 3, 4], [1, 0, 4, 3, 2]]
+    outputs = []
+
+    for p in permutations:
+        outputs.append(amp_controller(puzzle_input.copy(), p))
+
+    print(outputs)
+    return max(outputs)
+
+
 start = timeit.default_timer()
-amp_output = process(puzzle_input, 4, 0)
-print(amp_output)
+print(f'output: {main()}')
 stop = timeit.default_timer()
 print('Time: ', stop - start)
