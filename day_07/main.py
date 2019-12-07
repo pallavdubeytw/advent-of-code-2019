@@ -1,4 +1,7 @@
+import itertools
+import random
 import timeit
+from math import factorial
 
 puzzle_input = [3, 8, 1001, 8, 10, 8, 105, 1, 0, 0, 21, 46, 55, 72, 85, 110, 191, 272, 353, 434, 99999, 3, 9, 1002, 9,
                 5, 9, 1001, 9, 2, 9, 102, 3, 9, 9, 101, 2, 9, 9, 102, 4, 9, 9, 4, 9, 99, 3, 9, 102, 5, 9, 9, 4, 9, 99,
@@ -18,7 +21,8 @@ puzzle_input = [3, 8, 1001, 8, 10, 8, 105, 1, 0, 0, 21, 46, 55, 72, 85, 110, 191
                 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 102, 2, 9, 9,
                 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 99]
 
-puzzle_input = [3, 15, 3, 16, 1002, 16, 10, 16, 1, 16, 15, 15, 4, 15, 99, 0, 0]
+
+# puzzle_input = [3, 15, 3, 16, 1002, 16, 10, 16, 1, 16, 15, 15, 4, 15, 99, 0, 0]
 
 
 class Operation:
@@ -198,14 +202,32 @@ def amp_controller(int_code, phase_inputs):
     return amp_output
 
 
+def permutation(lst):
+    if len(lst) == 0:
+        return []
+
+    if len(lst) == 1:
+        return [lst]
+
+    l = []
+
+    for i in range(len(lst)):
+        m = lst[i]
+
+        remLst = lst[:i] + lst[i + 1:]
+
+        for p in permutation(remLst):
+            l.append([m] + p)
+    return l
+
+
 def main():
-    permutations = [[4, 3, 2, 1, 0], [0, 1, 2, 3, 4], [1, 0, 4, 3, 2]]
+    permutations = permutation([0, 1, 2, 3, 4])
     outputs = []
 
     for p in permutations:
         outputs.append(amp_controller(puzzle_input.copy(), p))
 
-    print(outputs)
     return max(outputs)
 
 
