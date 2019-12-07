@@ -1,3 +1,5 @@
+import timeit
+
 int_code = [3, 225, 1, 225, 6, 6, 1100, 1, 238, 225, 104, 0, 1101, 65, 39, 225, 2, 14, 169, 224, 101, -2340, 224, 224,
             4, 224, 1002, 223, 8, 223, 101, 7, 224, 224, 1, 224, 223, 223, 1001, 144, 70, 224, 101, -96, 224, 224, 4,
             224, 1002, 223, 8, 223, 1001, 224, 2, 224, 1, 223, 224, 223, 1101, 92, 65, 225, 1102, 42, 8, 225, 1002, 61,
@@ -103,8 +105,11 @@ def op_input(program, param_1):
     program[param_1] = int(input('Enter: '))
 
 
-def op_output(program, param_1):
-    print(program[param_1])
+def op_output(program, param_1, first_param_mode):
+    if first_param_mode == ParameterMode.IMMEDIATE:
+        print(param_1)
+    else:
+        print(program[param_1])
 
 
 def op_jump_if_true(program, param_1, first_param_mode, param_2, second_param_mode):
@@ -143,7 +148,7 @@ def op_equals(program, param_1, first_param_mode, param_2, second_param_mode, pa
         program[param_3] = 0
 
 
-def main_method(program):
+def main(program):
     i = 0
     while i < len(program) - 3:
         instruction = program[i]
@@ -166,7 +171,7 @@ def main_method(program):
             op_input(program, param_1)
 
         elif op_code is Operation.OUTPUT:
-            op_output(program, param_1)
+            op_output(program, param_1, first_param_mode)
 
         elif op_code is Operation.JUMP_IF_TRUE:
             index = op_jump_if_true(program, param_1, first_param_mode, param_2, second_param_mode)
@@ -192,4 +197,7 @@ def main_method(program):
         i += get_next_instruction_position_offset(op_code)
 
 
-main_method(int_code)
+start = timeit.default_timer()
+main(int_code)
+stop = timeit.default_timer()
+print('Time: ', stop - start)
