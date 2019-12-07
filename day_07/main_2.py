@@ -18,6 +18,7 @@ puzzle_input = [3, 8, 1001, 8, 10, 8, 105, 1, 0, 0, 21, 46, 55, 72, 85, 110, 191
                 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 102, 2, 9, 9,
                 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 99]
 
+
 # puzzle_input = [3, 15, 3, 16, 1002, 16, 10, 16, 1, 16, 15, 15, 4, 15, 99, 0, 0]
 
 # puzzle_input = [3, 26, 1001, 26, -4, 26, 3, 27, 1002, 27, 2, 27, 1, 27, 26, 27, 4, 27, 1001, 28, -1, 28, 1005, 28, 6,
@@ -145,16 +146,24 @@ def process(program, next_inst, phase_setting, amp_signal, requires_ps):
     i = next_inst
     amp_output = None
     halted = 0
-    while i < len(program) - 3:
+    while i < len(program):
         instruction = program[i]
 
         op_code = get_op_code(instruction)
 
-        param_1 = program[i + 1]
-        param_2 = program[i + 2]
-        param_3 = program[i + 3]
-        first_param_mode = get_first_param_mode(instruction)
-        second_param_mode = get_second_param_mode(instruction)
+        param_1 = first_param_mode = param_2 = param_3 = second_param_mode = None
+
+        if op_code != Operation.STOP:
+            param_1 = program[i + 1]
+            first_param_mode = get_first_param_mode(instruction)
+
+        if op_code != Operation.INPUT and op_code != Operation.OUTPUT and op_code != Operation.STOP:
+            param_2 = program[i + 2]
+            second_param_mode = get_second_param_mode(instruction)
+
+        if op_code == Operation.ADD or op_code == Operation.MULTIPLY \
+                or op_code == Operation.EQUALS or op_code == Operation.LESS_THAN:
+            param_3 = program[i + 3]
 
         if op_code is Operation.STOP:
             halted = 1
@@ -225,7 +234,7 @@ def amp_controller(int_code, phase_inputs):
 
         all_out.add(amp_output[amp_no])
 
-        if requires_ps and amp_no == 4:
+        if amp_no == 4:
             requires_ps = False
 
         amp_no = amp_no + 1 if amp_no + 1 < 5 else 0
