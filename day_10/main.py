@@ -4,10 +4,10 @@ inp_f = open('input.txt', 'r')
 def get_input(lines):
     inp = []
     for l in lines:
-        l = list(l)
+        ll = list(l)
         if '\n' in l:
-            l.remove('\n')
-        inp.append(list(l))
+            ll.remove('\n')
+        inp.append(list(ll))
     return inp
 
 
@@ -20,23 +20,31 @@ class Point:
         self.y = y
 
     def gradient_from(self, other):
-        yy = other.y - self.y
-        xx = other.x - self.x
+        num = other.y - self.y
+        den = other.x - self.x
 
-        if xx == 0:
-            if yy < 0:
-                return '-None'
-            elif yy > 0:
-                return 'None'
-        elif yy == 0:
-            if xx < 0:
-                return '-0'
-            elif xx > 0:
-                return '0'
-        elif xx < 0 and yy < 0:
-            return f'{str(yy / xx)}d'
+        slope = None
+        if den == 0:
+            slope = 'none'
         else:
-            return str(yy / xx)
+            slope = num / den
+
+        d = None
+
+        if num < 0 and den < 0:
+            d = '3'
+        elif num > 0 and den < 0:
+            d = '2'
+        elif num < 0 and den > 0:
+            d = '3'
+        elif num > 0 and den > 0:
+            d = '1'
+        elif num == 0:
+            d = '-' if den < 0 else ''
+        elif den == 0:
+            d = '-' if num < 0 else ''
+
+        return f'{slope}{d}'
 
     def __str__(self):
         return f'{self.x},{self.y}'
@@ -66,7 +74,7 @@ for j in range(0, len(pz_inp)):
                     x += 1
                 y += 1
             dc[str(point)] = len(gl)
-            print(f'{point}: {dc[str(point)]}')
+            # print(f'{point}: {dc[str(point)]}')
         k += 1
     j += 1
 
@@ -75,4 +83,4 @@ for c in dc:
     if dc[c] > dc[ans]:
         ans = c
 
-print(f'ans: {ans}')
+print(f'ans: {ans} | {dc[ans]}')
