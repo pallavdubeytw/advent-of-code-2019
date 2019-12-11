@@ -1,3 +1,5 @@
+import math
+
 inp_f = open('input.txt', 'r')
 
 
@@ -19,38 +21,39 @@ class Point:
         self.x = x
         self.y = y
 
-    def gradient_from(self, other):
+    def distance(self, other):
+        return math.sqrt((other.y - self.y) ** 2 + (other.x - self.x) ** 2)
+
+    def angle(self, other):
         num = other.y - self.y
         den = other.x - self.x
 
-        slope = None
         if den == 0:
-            slope = 'none'
-        else:
-            slope = num / den
+            return 90 if num > 0 else 270
+        if num == 0:
+            return 0 if den > 0 else 180
 
-        d = None
-
+        deg = math.degrees(math.atan(num / den))
         if num < 0 and den < 0:
-            d = '3'
-        elif num > 0 and den < 0:
-            d = '2'
-        elif num < 0 and den > 0:
-            d = '3'
+            return deg + 180
         elif num > 0 and den > 0:
-            d = '1'
-        elif num == 0:
-            d = '-' if den < 0 else ''
-        elif den == 0:
-            d = '-' if num < 0 else ''
-
-        return f'{slope}{d}'
+            return deg
+        elif num > 0 and den < 0:
+            return deg + 180
+        elif num < 0 and den > 0:
+            return deg + 360
 
     def __str__(self):
         return f'{self.x},{self.y}'
 
     def __repr__(self):
         return self.__str__()
+
+
+class Attr:
+    def __init__(self, slope, dist):
+        self.slope = slope
+        self.dist = dist
 
 
 fp = None
@@ -64,17 +67,17 @@ for j in range(0, len(pz_inp)):
             gl = set()
             for y in range(0, len(pz_inp)):
                 for x in range(0, len(pz_inp[y])):
-                    if str(Point(x, y)) == str(point):
+                    op = Point(x, y)
+                    if str(op) == str(point):
                         continue
                     if pz_inp[y][x] == '#':
-                        p = Point(x, y)
-                        g = point.gradient_from(p)
-                        # print(f'{point} || {p} || {g}')
-                        gl.add(g)
+                        angle = point.angle(op)
+                        gl.add(angle)
+                        # print(f'{point} | {op} | {angle}')
                     x += 1
                 y += 1
+            # print(f'{str(point)} ------- {len(gl)}')
             dc[str(point)] = len(gl)
-            # print(f'{point}: {dc[str(point)]}')
         k += 1
     j += 1
 
@@ -84,3 +87,5 @@ for c in dc:
         ans = c
 
 print(f'ans: {ans} | {dc[ans]}')
+
+sp = Point(11, 13)
