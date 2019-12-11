@@ -13,6 +13,9 @@ class Point:
     def __str__(self):
         return f'{self.x},{self.y}'
 
+    def __repr__(self):
+        return self.__str__()
+
 
 class Op:
     ADD = 1
@@ -149,7 +152,7 @@ def process(m, inp):
     dc = {}
     i = rb = 0
     count = 0
-    origin = Point(0, 0)
+    origin = Point(10, 10)
     current_point = origin
     current_dir = 'u'
     task = Task.Paint
@@ -261,7 +264,34 @@ def process(m, inp):
 
 dc = process(pz_inp, [1])
 
-print(dc)
+plist = []
+for i in dc:
+    s = i.split(',')
+    plist.append([Point(int(s[0]), int(s[1])), dc[i]])
 
+max_x = 0
+for p in plist:
+    if p[0].x > max_x:
+        max_x = p[0].x
 
+max_y = 0
+for p in plist:
+    if p[0].y > max_y:
+        max_y = p[0].y
 
+plot = []
+for y in range(0, max_y):
+    plot.append([])
+    for x in range(0, max_x):
+        plot[y].append(0)
+
+for i in plist:
+    p = i[0]
+    plot[p.y - 1][p.x - 1] = int(i[1])
+
+for r in range(len(plot)):
+    for i in range(len(plot[r])):
+        plot[r][i] = str(plot[r][i])
+
+for i in range(max_y - 1, 0, -1):
+    print(str.join(" ", plot[i]).replace('0', ' ').replace('1', '*'))
