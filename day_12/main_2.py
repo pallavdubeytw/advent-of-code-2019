@@ -1,13 +1,8 @@
 import timeit
 from copy import deepcopy
 from utils.lcm import lcm
-
-start = timeit.default_timer()
-
-
-def print_elapsed_time():
-    stop = timeit.default_timer()
-    print(f'Time elapsed: {int(stop - start)} seconds', end='\r')
+from utils.time import calc_run_time
+from utils.progress import print_progress
 
 
 class Point:
@@ -69,88 +64,96 @@ class Moon:
         return self.position.z == other.position.z and self.velocity.z == other.velocity.z
 
 
-io = Moon(Point(4, 12, 13), Velocity(0, 0, 0))
-europa = Moon(Point(-9, 14, -3), Velocity(0, 0, 0))
-ganymede = Moon(Point(-7, -1, 2), Velocity(0, 0, 0))
-callisto = Moon(Point(-11, 17, -1), Velocity(0, 0, 0))
+@calc_run_time
+def main():
+    io = Moon(Point(4, 12, 13), Velocity(0, 0, 0))
+    europa = Moon(Point(-9, 14, -3), Velocity(0, 0, 0))
+    ganymede = Moon(Point(-7, -1, 2), Velocity(0, 0, 0))
+    callisto = Moon(Point(-11, 17, -1), Velocity(0, 0, 0))
 
-# Prasanna
-# io = Moon(Point(-19, -4, 2), Velocity(0, 0, 0))
-# europa = Moon(Point(-9, 8, -16), Velocity(0, 0, 0))
-# ganymede = Moon(Point(-4, 5, -11), Velocity(0, 0, 0))
-# callisto = Moon(Point(1, 9, -13), Velocity(0, 0, 0))
+    # Prasanna
+    # io = Moon(Point(-19, -4, 2), Velocity(0, 0, 0))
+    # europa = Moon(Point(-9, 8, -16), Velocity(0, 0, 0))
+    # ganymede = Moon(Point(-4, 5, -11), Velocity(0, 0, 0))
+    # callisto = Moon(Point(1, 9, -13), Velocity(0, 0, 0))
 
-# example
-# io = Moon(Point(-1, 0, 2), Velocity(0, 0, 0))
-# europa = Moon(Point(2, -10, -7), Velocity(0, 0, 0))
-# ganymede = Moon(Point(4, -8, 8), Velocity(0, 0, 0))
-# callisto = Moon(Point(3, 5, -1), Velocity(0, 0, 0))
+    # example
+    # io = Moon(Point(-1, 0, 2), Velocity(0, 0, 0))
+    # europa = Moon(Point(2, -10, -7), Velocity(0, 0, 0))
+    # ganymede = Moon(Point(4, -8, 8), Velocity(0, 0, 0))
+    # callisto = Moon(Point(3, 5, -1), Velocity(0, 0, 0))
 
-# example 2
-# io = Moon(Point(-8, -10, 0), Velocity(0, 0, 0))
-# europa = Moon(Point(5, 5, 10), Velocity(0, 0, 0))
-# ganymede = Moon(Point(2, -7, 3), Velocity(0, 0, 0))
-# callisto = Moon(Point(9, -8, -3), Velocity(0, 0, 0))
+    # example 2
+    # io = Moon(Point(-8, -10, 0), Velocity(0, 0, 0))
+    # europa = Moon(Point(5, 5, 10), Velocity(0, 0, 0))
+    # ganymede = Moon(Point(2, -7, 3), Velocity(0, 0, 0))
+    # callisto = Moon(Point(9, -8, -3), Velocity(0, 0, 0))
 
-moons = [io, europa, ganymede, callisto]
-initial_state = deepcopy(moons)
+    moons = [io, europa, ganymede, callisto]
+    initial_state = deepcopy(moons)
 
-count = 1
-repeat = {'x': 0, 'y': 0, 'z': 0}
+    count = 1
+    repeat = {'x': 0, 'y': 0, 'z': 0}
+    progress_counter = 0
 
-while True:
-    print_elapsed_time()
-    for i in range(0, len(moons)):
-        for j in range(0, len(moons)):
-            if i != j:
-                moons[i].calc_velocity(moons[j])
+    while True:
+        print_progress(3, progress_counter)
 
-    for m in moons:
-        m.move()
+        for i in range(0, len(moons)):
+            for j in range(0, len(moons)):
+                if i != j:
+                    moons[i].calc_velocity(moons[j])
 
-    if repeat['x'] == 0:
-        x_flag = True
-        for i in range(0, 4):
-            if not initial_state[i].compare_x(moons[i]):
-                x_flag = False
-                break
-        if x_flag:
-            repeat['x'] = count
+        for m in moons:
+            m.move()
 
-    if repeat['y'] == 0:
-        y_flag = True
-        for i in range(0, 4):
-            if not initial_state[i].compare_y(moons[i]):
-                y_flag = False
-                break
-        if y_flag:
-            repeat['y'] = count
+        if repeat['x'] == 0:
+            x_flag = True
+            for i in range(0, 4):
+                if not initial_state[i].compare_x(moons[i]):
+                    x_flag = False
+                    break
+            if x_flag:
+                repeat['x'] = count
+                progress_counter += 1
 
-    if repeat['z'] == 0:
-        z_flag = True
-        for i in range(0, 4):
-            if not initial_state[i].compare_z(moons[i]):
-                z_flag = False
-                break
-        if z_flag:
-            repeat['z'] = count
+        if repeat['y'] == 0:
+            y_flag = True
+            for i in range(0, 4):
+                if not initial_state[i].compare_y(moons[i]):
+                    y_flag = False
+                    break
+            if y_flag:
+                repeat['y'] = count
+                progress_counter += 1
 
-    loop_break = True
-    for i in repeat:
-        if repeat[i] == 0:
-            loop_break = False
+        if repeat['z'] == 0:
+            z_flag = True
+            for i in range(0, 4):
+                if not initial_state[i].compare_z(moons[i]):
+                    z_flag = False
+                    break
+            if z_flag:
+                repeat['z'] = count
+                progress_counter += 1
 
-    if loop_break:
-        break
+        loop_break = True
+        for i in repeat:
+            if repeat[i] == 0:
+                loop_break = False
 
-    count += 1
+        if loop_break:
+            break
 
-x = repeat['x']
-y = repeat['y']
-z = repeat['z']
+        count += 1
 
-ans = int(lcm(x, y, z))
+    x = repeat['x']
+    y = repeat['y']
+    z = repeat['z']
 
-print(f'part 2: {ans}')
+    ans = int(lcm(x, y, z))
 
-print_elapsed_time()
+    return ans
+
+
+print(f'part 2: {main()}')
