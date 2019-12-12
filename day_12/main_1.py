@@ -1,5 +1,6 @@
 import timeit
 from copy import deepcopy
+from utils.time import calc_run_time
 
 start = timeit.default_timer()
 
@@ -103,7 +104,8 @@ callisto = Moon(Point(9, -8, -3), Velocity(0, 0, 0))
 moons = [io, europa, ganymede, callisto]
 
 
-def Part1(steps, list_of_moons):
+@calc_run_time
+def part1(steps, list_of_moons):
     for step in range(0, steps):
         for i in range(0, len(list_of_moons)):
             for j in range(0, len(list_of_moons)):
@@ -119,35 +121,6 @@ def Part1(steps, list_of_moons):
     return total
 
 
-total_energy = Part1(1000, deepcopy(moons))
+total_energy = part1(1000, deepcopy(moons))
 
 print(f'part 1: {total_energy}')
-
-# count = 0
-# zero_step = Step(moons)
-# step_list = [zero_step]
-# repeated = False
-# while not repeated:
-#     for i in range(0, len(moons)):
-#         for j in range(0, len(moons)):
-#             if i != j:
-#                 moons[i].calc_velocity(moons[j])
-#
-#     for m in moons:
-#         m.move()
-#
-#     count += 1
-#
-#     current_step = Step(moons)
-#
-#     # for s in step_list:
-#     if current_step == zero_step:
-#         repeated = True
-#         break
-#
-#     # step_list.append(current_step)
-
-# print(f'part 2: {count}')
-# print("")
-# stop = timeit.default_timer()
-# print('Time: ', stop - start)

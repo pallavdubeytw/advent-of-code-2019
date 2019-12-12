@@ -1,5 +1,6 @@
 import timeit
 from copy import deepcopy
+from utils.lcm import lcm
 
 start = timeit.default_timer()
 
@@ -74,10 +75,10 @@ ganymede = Moon(Point(-7, -1, 2), Velocity(0, 0, 0))
 callisto = Moon(Point(-11, 17, -1), Velocity(0, 0, 0))
 
 # Prasanna
-io = Moon(Point(-19, -4, 2), Velocity(0, 0, 0))
-europa = Moon(Point(-9, 8, -16), Velocity(0, 0, 0))
-ganymede = Moon(Point(-4, 5, -11), Velocity(0, 0, 0))
-callisto = Moon(Point(1, 9, -13), Velocity(0, 0, 0))
+# io = Moon(Point(-19, -4, 2), Velocity(0, 0, 0))
+# europa = Moon(Point(-9, 8, -16), Velocity(0, 0, 0))
+# ganymede = Moon(Point(-4, 5, -11), Velocity(0, 0, 0))
+# callisto = Moon(Point(1, 9, -13), Velocity(0, 0, 0))
 
 # example
 # io = Moon(Point(-1, 0, 2), Velocity(0, 0, 0))
@@ -148,21 +149,8 @@ x = repeat['x']
 y = repeat['y']
 z = repeat['z']
 
-max_no = max(x, y, z)
+ans = int(lcm(x, y, z))
 
-# ans = max_no
-# while True:
-#     # print_elapsed_time()
-#
-#     x_mod = ans % x
-#     y_mod = ans % y
-#     z_mod = ans % z
-#
-#     if x_mod == 0 and y_mod == 0 and z_mod == 0:
-#         break
-#
-#     ans += max_no
+print(f'part 2: {ans}')
 
-print(f'Answer: {(x, y, z)}')
-print("")
 print_elapsed_time()
