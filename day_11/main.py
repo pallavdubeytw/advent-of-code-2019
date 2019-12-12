@@ -225,7 +225,7 @@ def process(m, inp):
                         current_point.y += 1
                         current_dir = 'u'
                 if str(current_point) in dc:
-                    inp.append(dc[str(current_point)][0])
+                    inp.append(dc[str(current_point)])
                 else:
                     inp.append(0)
 
@@ -294,4 +294,4 @@ for r in range(len(plot)):
         plot[r][i] = str(plot[r][i])
 
 for i in range(max_y - 1, 0, -1):
-    print(str.join(" ", plot[i]).replace('0', ' ').replace('1', '*'))
+    print(str.join(" ", plot[i]).replace('0', ' ').replace('1', '#'))
