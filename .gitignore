@@ -5,3 +5,5 @@ venv/*
 .vscode
 .vscode/*
 *pycache*
+*input.txt*
+*tmp.py*
