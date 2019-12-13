@@ -176,15 +176,11 @@ def process(m):
             break
 
         elif op_code is Op.ADD:
-            p1 = m[i + 1]
-            p2 = m[i + 2]
-            p3 = m[i + 3]
+            p1, p2, p3 = m[i + 1], m[i + 2], m[i + 3]
             op_add(m, p1, pm1, p2, pm2, p3, pm3, rb)
 
         elif op_code is Op.MULTIPLY:
-            p1 = m[i + 1]
-            p2 = m[i + 2]
-            p3 = m[i + 3]
+            p1, p2, p3 = m[i + 1], m[i + 2], m[i + 3]
             op_multiply(m, p1, pm1, p2, pm2, p3, pm3, rb)
 
         elif op_code is Op.INPUT:
@@ -212,27 +208,21 @@ def process(m):
                 count = 0
 
         elif op_code is Op.JUMP_IF_TRUE:
-            p1 = m[i + 1]
-            p2 = m[i + 2]
+            p1, p2 = m[i + 1], m[i + 2]
             i = op_jump_if_true(m, i, p1, pm1, p2, pm2, rb)
             continue
 
         elif op_code is Op.JUMP_IF_FALSE:
-            p1 = m[i + 1]
-            p2 = m[i + 2]
+            p1, p2 = m[i + 1], m[i + 2]
             i = op_jump_if_false(m, i, p1, pm1, p2, pm2, rb)
             continue
 
         elif op_code is Op.LESS_THAN:
-            p1 = m[i + 1]
-            p2 = m[i + 2]
-            p3 = m[i + 3]
+            p1, p2, p3 = m[i + 1], m[i + 2], m[i + 3]
             op_less_than(m, p1, pm1, p2, pm2, p3, pm3, rb)
 
         elif op_code is Op.EQUALS:
-            p1 = m[i + 1]
-            p2 = m[i + 2]
-            p3 = m[i + 3]
+            p1, p2, p3 = m[i + 1], m[i + 2], m[i + 3]
             op_equals(m, p1, pm1, p2, pm2, p3, pm3, rb)
 
         elif op_code is Op.RELATIVE_BASE:
@@ -254,6 +244,6 @@ def get_step(ball_position, paddle_position):
     return step
 
 
-score = process(pz_inp)
+final_score = process(pz_inp)
 
-print(f'part 2: {score}')
+print(f'part 2: {final_score}')
