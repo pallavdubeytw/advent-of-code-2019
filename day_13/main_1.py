@@ -1,3 +1,5 @@
+from collections import Counter
+
 from utils.time import calc_run_time
 
 inp_file = open("input.txt", 'r')
@@ -36,11 +38,6 @@ class PMode:
     POSITION = 0
     IMMEDIATE = 1
     RELATIVE = 2
-
-
-class Task:
-    Move = 0
-    Paint = 1
 
 
 class Tile:
@@ -149,7 +146,7 @@ def op_relative_base(m, p1, pm1, rb):
 
 
 @calc_run_time
-def process(m, inp):
+def process(m):
     dc = {}
     point = Point(0, 0)
     i = rb = 0
@@ -166,15 +163,11 @@ def process(m, inp):
             break
 
         elif op_code is Op.ADD:
-            p1 = m[i + 1]
-            p2 = m[i + 2]
-            p3 = m[i + 3]
+            p1, p2, p3 = m[i + 1], m[i + 2], m[i + 3]
             op_add(m, p1, pm1, p2, pm2, p3, pm3, rb)
 
         elif op_code is Op.MULTIPLY:
-            p1 = m[i + 1]
-            p2 = m[i + 2]
-            p3 = m[i + 3]
+            p1, p2, p3 = m[i + 1], m[i + 2], m[i + 3]
             op_multiply(m, p1, pm1, p2, pm2, p3, pm3, rb)
 
         elif op_code is Op.INPUT:
@@ -196,27 +189,21 @@ def process(m, inp):
                 count = 0
 
         elif op_code is Op.JUMP_IF_TRUE:
-            p1 = m[i + 1]
-            p2 = m[i + 2]
+            p1, p2 = m[i + 1], m[i + 2]
             i = op_jump_if_true(m, i, p1, pm1, p2, pm2, rb)
             continue
 
         elif op_code is Op.JUMP_IF_FALSE:
-            p1 = m[i + 1]
-            p2 = m[i + 2]
+            p1, p2 = m[i + 1], m[i + 2]
             i = op_jump_if_false(m, i, p1, pm1, p2, pm2, rb)
             continue
 
         elif op_code is Op.LESS_THAN:
-            p1 = m[i + 1]
-            p2 = m[i + 2]
-            p3 = m[i + 3]
+            p1, p2, p3 = m[i + 1], m[i + 2], m[i + 3]
             op_less_than(m, p1, pm1, p2, pm2, p3, pm3, rb)
 
         elif op_code is Op.EQUALS:
-            p1 = m[i + 1]
-            p2 = m[i + 2]
-            p3 = m[i + 3]
+            p1, p2, p3 = m[i + 1], m[i + 2], m[i + 3]
             op_equals(m, p1, pm1, p2, pm2, p3, pm3, rb)
 
         elif op_code is Op.RELATIVE_BASE:
@@ -228,10 +215,7 @@ def process(m, inp):
     return dc
 
 
-dc = process(pz_inp, [2])
+dc = process(pz_inp)
 
-ans = 0
-for i in dc:
-    if dc[i] == Tile.BLOCK:
-        ans += 1
+ans = Counter(dc.values())[Tile.BLOCK]
 print(f'part 1: {ans}')
