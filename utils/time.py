@@ -8,6 +8,7 @@ def calc_run_time(func):
         result = func(*args)
 
         stop = timeit.default_timer()
+        print(f'Method: {func.__name__} | ', end='')
         print(f'Time elapsed: {int(stop - start)}s')
 
         return result
